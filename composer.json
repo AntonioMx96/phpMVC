@@ -1,8 +1,7 @@
 {
     "name": "php/mexan",
     "require": {
-        "illuminate/database": "*",
-        "illuminate/http": "^8.28"
+        "illuminate/database": "*"
     },
     "autoload": {
         "psr-4":{
