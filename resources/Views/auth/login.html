@@ -1,51 +1,46 @@
-<h1>Log In</h1>
 <div class="container">
-    <div class="card card-container">
-        <h2 class="titleLogin">Iniciar sesi&oacute;n</h2>
-        <form method="post" class="form-signin" id="Session" name="Session">
-            <input type="email" name="email" id="email" class="form-control" placeholder="email">
-            <input type="password" name="password" id="password" class="form-control" placeholder="password">
-            <button onclick="myFech()" type="button" id="btnLog" class="btn">Iniciar sesi&oacute;n</button>
-        </form> <br>
+    <div class="container">
+        <div class="login  text-center p-5">
+            <h2 class="titleLogin">Iniciar sesi&oacute;n</h2>
+            <div class="row text-center login-page">
+                <div class="login-form ">
+                    <form method="post" class="login-form" id="Session" name="Session">
+                        <!-- <input type="email" name="email" id="email" class="form-control" placeholder="email">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="password">
+                    <button onclick="myFech()" type="button" id="btnLog" class="btn">Iniciar sesi&oacute;n</button> -->
+                        <input type="email" name="email" id="email" class="form-control mt-5" placeholder="email">
+                    <input type="password" name="password" id="password" class="form-control mt-3" placeholder="password">
+                        <button  onclick="myFech()" type="button" class="btn btn-dark btn-lg mt-5 btn-login" >Log In</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
 
-<script>
-    const btn = document.querySelector('#btnLog')
-    async function myFech() {
-        const url = "<?= URL.'auth/userLogin';?>"
+    <script>
+        const btn = document.querySelector('#btnLog')
+        async function myFech() {
+            const url = "<?= URL.'auth/userLogin';?>"
+            let formulario = new FormData(document.getElementById("Session"))
+            let alerta = document.querySelector("#alerta")
+            let mensaje = document.querySelector("#mensaje")
 
-        let email = document.getElementById('email').value
-        let password = document.getElementById("password").value
-        let formulario = new FormData(document.getElementById("Session"))
+            if (email == "" || password == "") { } else {
+                fetch(url, {
+                    method: "post",
+                    body: formulario
+                }).then(res => res.json())
+                    .then(data => {
+                        if (data.status === 200) {
+                            location.reload()
+                        }else{
+                            mensaje.innerHTML= data.message
+                            alerta.style.display = "block"
+                        }
 
-        var data = {
-            email: email,
-            password: password
-        };
-
-        if (email == "" || password == "") {} else {
-            //console.log(data)
-            // const resultado = await fetch(url, {
-            //     method: 'POST',
-            //     body:{
-            //         email:email
-            //     }
-            // })
-            // const datos = await resultado.json()
-            // console.log(datos);
-            fetch(url, {
-                method: "post",
-                body: formulario
-            }).then(res=>res.json())
-            .then(data => {
-                console.log(data)
-                console.log(data.status)
-                if(data.status===200){
-                   location.reload()
-                }
-               
-            })
+                    })
+            }
         }
-    }
-</script>
+    </script>
+</div>

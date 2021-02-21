@@ -1,5 +1,7 @@
 *{
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 .app-header {
     background: #faad14;
@@ -43,11 +45,13 @@
 
 .app-nav-li a {
     height:100%;
-    flex: 1 1 auto;
+    flex: 1;
     text-decoration: none;
-    text-align: center;
-    font-size: 3em;
-    color:black;
+    font-size: 1.5em;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .app-nav-li a:hover {
@@ -84,3 +88,46 @@
     align-items: center;
 }
 
+.login{
+    margin: auto;
+    width: 400px;
+    height: 400px;
+    margin-top: 40px;
+    box-shadow: 0px 0px 5px 0px ;
+}
+
+.form-control::placeholder{
+    text-align: center;
+}
+
+.btn-login{
+    width: 80%;
+    
+}
+/*menu contenido*/
+.menu-contenido{
+    margin: auto;
+    width: 70%;
+    height: 500px;
+    display: flex;
+    justify-content: space-around;    
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: gray;
+    
+    box-shadow: 0 0 5px 1px;
+}
+
+.contenido-item{
+    background: white;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    box-shadow: 0 0 4px 0px;
+    transition: box-shadow 500ms;
+
+}
+
+.contenido-item:hover{
+    box-shadow: 0 0 16px 5px ;
+}

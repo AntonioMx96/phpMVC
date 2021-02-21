@@ -1,16 +1,11 @@
 <?php
 
-class Controller{
+class Controller extends App
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         Session::start();
         $this->view = new Views();
     }
-
-    public function loadModel($model)
-    {
-        require_once('./App/Entities/'.$model.'.php');
-    }
-
 }
-

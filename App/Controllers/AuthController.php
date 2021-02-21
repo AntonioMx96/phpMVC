@@ -21,17 +21,17 @@ class AuthController extends Controller
     }
     public function userLogin($request)
     {
-        if (isset($request["email"]) && isset($request["password"])) {
-            $user = User::where('email', '=', $request["email"])->first();
+        if (isset($request->email) && isset($request->password)) {
+            $user = User::where('email', '=', $request->email)->first();
             if ($user) {
-                if ($user->email == $request['email'] && $user->password == $request['password']) {
+                if ($user->email == $request->email && $user->password == $request->password) {
                     $this->createSession($user->username);
-                    echo json_encode(['status' => 200, 'message' => '']);
+                    $this->response("success");
                 } else {
-                    echo json_encode(['status' => 400, 'message' => 'Contraseña incorecta']);
+                    $this->response("Correo o Contraseña incorrecta", 400);
                 }
             } else {
-                echo json_encode(['status' => 400, 'message' => 'Corro no valido']);
+                $this->response("Correo no registrado", 400);
             }
         }
     }
@@ -39,8 +39,8 @@ class AuthController extends Controller
     public function signIn($request)
     {
         if (
-            isset($request["user"]) && isset($request["email"])
-            && isset($request["password"])
+            isset($request["user"]) && isset($request->email)
+            && isset($request->password)
         ) {
             #code
         }
@@ -48,14 +48,22 @@ class AuthController extends Controller
 
     public function index()
     {
-        error_reporting(E_ALL ^ E_NOTICE);
         $userName = Session::getSession("User");
         echo $_SESSION['User'];
         if ($userName != "") {
-            header("Location: " . URL . "product");
+            header("Location: " . URL . "admin");
         } else {
-            $this->view->render($this, 'login', "Login");
-            error_reporting(E_ALL ^ E_NOTICE);
+            $this->view->render($this, 'login', "Login", ["hola"=>"holauwu"]);
         }
+    }
+
+    public function method()
+    {
+        echo "metodo";
+    }
+
+    public function arg($hola)
+    {
+        echo "metodo con argumento";
     }
 }

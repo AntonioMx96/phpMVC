@@ -4,4 +4,10 @@ require_once './config/Template.php';
 require_once './config/App.php';
 require_once './config.php';
 
+
 new App();
+
+function route($route){
+    echo URL.$route;
+}
+
