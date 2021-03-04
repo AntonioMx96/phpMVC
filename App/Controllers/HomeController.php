@@ -1,8 +1,5 @@
 <?php
 
-use App\Entities\User;
-
-
 class HomeController extends Controller
 {
     function  __construct()
@@ -11,9 +8,6 @@ class HomeController extends Controller
     }
 
     public function index(){
-
-         $users = User::all();
-       
-        view("home.index","hola uwu", ["users"=>$users]);
+        view("index","Home");
     } 
 }
