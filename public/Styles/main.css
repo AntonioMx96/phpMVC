@@ -1,133 +1,94 @@
-*{
+*, body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-.app-header {
-    background: #faad14;
-    width: 100%;
-    height: 76px;
 
-    padding: 0 10px;
-    box-shadow: 0 0 10px ;
-    color:white;
+.posts{
+    margin: auto;
+    width:550px;
+    /* background: red; */
 }
 
-.app-nav {
-    display: flex;
+.post{
+    /* background: rosybrown; */
     width: 100%;
-    height: 100%;
+    max-height: 250px;
+    display: flex;
+    flex-direction: column ;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    box-shadow: 0px 0px 1px 0px;
+}
+
+.post-header{
+    width: 98%;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   /* background: slateblue; */
+}
+.post-header img{
+    width: 40px;
+}
+.post-time{
+   width: 100px;
+   font-size: 15px;
+   /* background: chartreuse; */
+}
+.post-user{
+    flex: 6;
+    margin-left: 25px;
+}
+
+.post-body{
+    width: 95%;
+}
+.post-footer{
+    width: 98%;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   /* background: slateblue; */
+}
+
+/**/
+
+.public-post{
+    margin: 10px auto;
+    width:550px;
+    height: 100px;
+    /* background: cornflowerblue; */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 5px 0;
+}
+
+
+.post-add{
+    margin: 10px;
+    display: flex;
     justify-content: space-between;
 }
 
-.app-nav-logo {
-    height: 100%;
-    width: 20%;
-    display: flex;
-    font-size: 2em;
-    justify-content: center;
-    align-items: center;
+.post-add img{
+    width: 50px;
+    height: 50px;
 }
 
-.app-nav-ul {
-    width: 60%;
-    height:100%;
-    display: flex;
-}
-
-.app-nav-li {
-    list-style: none;
-    flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.app-nav-li a {
-    height:100%;
+.post-add textarea{
     flex: 1;
-    text-decoration: none;
-    font-size: 1.5em;
-    color:white;
+}
+
+.public-footer{
+    width: 98%;
+    /* background: rosybrown; */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
 }
-
-.app-nav-li a:hover {
-    background: rgba(1, 1, 1, .5);
-}
-
-.app-login {
-    width: 5%;
-    height: 100%;
-    font-size: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.app-login p {
-    margin: 0;    
-}
-
-.cart{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
-.img-cart{
-    width: 25px;
-    cursor: pointer;
-}
-.ant-badge{
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login{
-    margin: auto;
-    width: 400px;
-    height: 400px;
-    margin-top: 40px;
-    box-shadow: 0px 0px 5px 0px ;
-}
-
-.form-control::placeholder{
-    text-align: center;
-}
-
-.btn-login{
-    width: 80%;
-    
-}
-/*menu contenido*/
-.menu-contenido{
-    margin: auto;
-    width: 70%;
-    height: 500px;
-    display: flex;
-    justify-content: space-around;    
-    flex-wrap: wrap;
-    align-items: center;
-    background-color: gray;
-    
-    box-shadow: 0 0 5px 1px;
-}
-
-.contenido-item{
-    background: white;
-    width: 200px;
-    height: 200px;
-    margin: 10px;
-    box-shadow: 0 0 4px 0px;
-    transition: box-shadow 500ms;
-
-}
-
-.contenido-item:hover{
-    box-shadow: 0 0 16px 5px ;
+.btn-public-post{
+    width: 80px;
 }

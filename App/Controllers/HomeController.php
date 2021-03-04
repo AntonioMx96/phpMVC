@@ -1,4 +1,8 @@
 <?php
+
+use App\Entities\User;
+
+
 class HomeController extends Controller
 {
     function  __construct()
@@ -6,8 +10,10 @@ class HomeController extends Controller
         parent::__construct();
     }
 
-    public function index()
-    {
-        $this->view->render($this, 'index', 'Starpet');
-    }
+    public function index(){
+
+         $users = User::all();
+       
+        view("home.index","hola uwu", ["users"=>$users]);
+    } 
 }

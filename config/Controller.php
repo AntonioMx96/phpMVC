@@ -1,11 +1,8 @@
 <?php
-
-class Controller extends App
+class Controller extends Auth
 {
-
     public function __construct()
     {
         Session::start();
-        $this->view = new Views();
     }
 }

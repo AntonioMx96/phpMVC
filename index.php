@@ -6,8 +6,3 @@ require_once './config.php';
 
 
 new App();
-
-function route($route){
-    echo URL.$route;
-}
-

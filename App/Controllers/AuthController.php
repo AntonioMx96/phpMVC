@@ -1,7 +1,6 @@
 <?php
 
 use App\Entities\User;
-use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -9,61 +8,64 @@ class AuthController extends Controller
     {
         parent::__construct();
     }
-    public function createSession($user)
+    public function register($request)
     {
-        Session::setSession('User', $user);
-    }
+        $validate = [];
+        if (!isset($request->username)) {
+            $validate = $validate + ["username" => "required"];
+        }
 
-    public function destroySession()
-    {
-        Session::destroy();
-        header("Location:" . URL);
-    }
-    public function userLogin($request)
-    {
-        if (isset($request->email) && isset($request->password)) {
-            $user = User::where('email', '=', $request->email)->first();
-            if ($user) {
-                if ($user->email == $request->email && $user->password == $request->password) {
-                    $this->createSession($user->username);
-                    $this->response("success");
-                } else {
-                    $this->response("Correo o Contraseña incorrecta", 400);
-                }
-            } else {
-                $this->response("Correo no registrado", 400);
+        if (!isset($request->email)) {
+            $validate = $validate + ["email" => "required"];
+        }
+
+        if (!isset($request->password)) {
+            $validate = $validate + ["password" => "required"];
+        }
+
+        if (count($validate) != 0) {
+            validateResponse($validate, 400);
+        } else {
+            try {
+
+                $user = new User();
+                $user->username = $request->username;
+                $user->email = $request->email;
+                $user->password = $request->password;
+                $user->save();
+                response("success", 200);
+            } catch (Exception $th) {
+                validateResponse($th->errorInfo[2], 400);
             }
         }
     }
 
-    public function signIn($request)
+    public function update($request)
     {
-        if (
-            isset($request["user"]) && isset($request->email)
-            && isset($request->password)
-        ) {
-            #code
-        }
-    }
+        $validate = [];
 
-    public function index()
-    {
-        $userName = Session::getSession("User");
-        echo $_SESSION['User'];
-        if ($userName != "") {
-            header("Location: " . URL . "admin");
+        if (!isset($request->email)) {
+            $validate = $validate + ["email" => "required"];
+        }
+        if (count($validate) != 0) {
+            validateResponse($validate, 400);
         } else {
-            $this->view->render($this, 'login', "Login", ["hola"=>"holauwu"]);
+
+            try {
+                $user = User::where("email", $request->email)->first();
+                if ($request->username != $user->username) {
+                    User::where("email", $request->email)->update([
+                        "username" => $request->username
+                    ]);
+                    response("success", 200);
+                } else {
+                    response("el nombre usuario: $request->username debe ser difenre al anterior", 400);
+                }
+                $user->username = $request->username;
+                response("success", 200);
+            } catch (Exception $th) {
+                validateResponse($th->errorInfo[2], 400);
+            }
         }
-    }
-
-    public function method()
-    {
-        echo "metodo";
-    }
-
-    public function arg($hola)
-    {
-        echo "metodo con argumento";
     }
 }
