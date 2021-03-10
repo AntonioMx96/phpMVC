@@ -67,7 +67,14 @@ class App
     {
         //cargamos el request
         $request = file_get_contents("php://input");
-        $this->request = (object) json_decode($request, true);
+
+        if(isset($request)){
+            $request = $_POST;
+            $this->request = (object)$request;
+        }else{
+            $this->request = (object) json_decode($request, true);
+        }
+       
     }
 
 
@@ -110,17 +117,27 @@ class App
             case 'POST':
                 ($this->method=="")?$this->method = "store" : null;
 
-                $controller->{$this->method}($this->request);
+                $controller->{$this->method}($this->request, $this->args);
                 # code...
                 break;
             case 'PUT':
                 $this->method = "update";
-                $controller->{$this->method}($this->request);
+                if(!isset($this->request)){
+                    $controller->{$this->method}($this->request);
+                }else{
+                    $controller->{$this->method}($this->method);
+                }
                 # code...
                 break;
             case 'DELETE':
+                $this->args = $this->method;
                 $this->method = "delete";
-                $controller->{$this->method}($this->request);
+               
+                if(!isset($this->request)){
+                    $controller->{$this->method}($this->request);
+                }else{
+                    $controller->{$this->method}($this->args);
+                }
                 # code...
                 break;
             default:

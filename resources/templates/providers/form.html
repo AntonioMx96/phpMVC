@@ -1,0 +1,35 @@
+<?php if(isset($provider->id )){?>
+<div class="form-group" style="display: none;">
+  <label for="name">id</label>
+  <input type="number" class="form-control" id="id" name="id" placeholder="id" value="<?= $provider->id ?>"  >
+</div>
+<?php } ?>
+
+<div class="form-group">
+  <label for="name">Name</label>
+  <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<?= $provider->name ?>">
+</div>
+
+<div class="form-group">
+  <label for="email">email</label>
+  <input type="email" class="form-control" id="email" name="email" placeholder="email"
+    value="<?= $provider->email ?>">
+</div>
+
+<div class="form-group">
+  <label for="rfc">rfc</label>
+  <input type="text" class="form-control" id="rfc" name="rfc" placeholder="rfc"
+    value="<?= $provider->rfc ?>">
+</div>
+
+<div class="form-group">
+  <label for="phone">phone</label>
+  <input type="text" class="form-control" id="phone" name="phone" placeholder="phone"
+    value="<?= $provider->phone ?>">
+</div>
+
+<div class="form-group">
+  <label for="address">address</label>
+  <input type="text" class="form-control" id="address" name="address" placeholder="address"
+    value="<?= $provider->address ?>">
+</div>

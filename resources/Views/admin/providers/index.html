@@ -1,0 +1,104 @@
+<div class="page-header">
+  <nav aria-label="breadcrumb" style="float: right;">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href=<?=route('admin') ?>>Dashboar</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Lista de
+        <?=  $title ?>
+      </li>
+    </ol>
+  </nav>
+</div>
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h4 class="card-title">Lista de
+        <?=  $title ?>
+      </h4>
+
+      <div class="dropdown">
+        <a class="" id="dropdownMenuIconButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-v"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton3">
+          <h6 class="dropdown-header">Opciones</h6>
+          <div>
+
+            <a class="dropdown-item" href="<?= route('provider/create') ?>">
+              </i>Agregar</a>
+          </div>
+          <a class="dropdown-item" href="#">Salir</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive">
+          <table id="order-listing" class="table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>email</th>
+                <th>rfc</th>
+                <th>phone</th>
+                <th>addres</th>
+                <th>actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach($providers as $provider){ ?>
+              <tr>
+                <td>
+                  <?= $provider->id ?>
+                </td>
+                <td>
+                  <?= $provider->name ?>
+                </td>
+                <td>
+                  <?= $provider->email ?>
+                </td>
+                <td>
+                  <?= $provider->rfc ?>
+                </td>
+                <td>
+                  <?= $provider->phone ?>
+                </td>
+                <td>
+                  <?= $provider->address ?>
+                </td>
+                <td>
+                  <a href=<?=route('provider/edit/'.$provider->id) ?> >
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a onclick="deleteprovider('<?= $provider->id ?>')">
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </td>
+              </tr>
+              <?php }?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let deleteprovider = id => {
+
+    fetch("<?= route('provider/') ?>" + id, {
+      method: "delete",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(respose => respose.json())
+      .then(data => {
+        console.log(data)
+        Turbolinks.visit("<?= route('provider') ?>")
+      })
+
+  }
+</script>
