@@ -32,4 +32,20 @@ class Crud {
             )
         })
     }
+    delete(url){
+        return new Promise(resolve => {
+            return resolve(
+                fetch(url, {
+                    method: 'delete',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(respose => respose.json())
+                    .then(data => {
+                        return data
+                    })
+            )
+        })
+    }
 }

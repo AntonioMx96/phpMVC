@@ -1,11 +1,25 @@
 {
-    "name": "php/mexan",
+    "name": "mexan/phpmvc",
+    "description": "Esto es un punto de venta",
+    "authors": [{
+        "name": "Ricardo Antonio Mex Tun",
+        "email": "ricardo.mexan@gmail.com"
+    }],
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "platform": {
+            "php": "7.4",
+            "ext-intl": "0"
+        }
+    },
     "require": {
-        "illuminate/database": "*"
+        "illuminate/database": "^8.31",
+        "wixel/gump": "^1.12"
     },
     "autoload": {
-        "psr-4":{
-            "App\\":"App/"
+        "psr-4": {
+            "App\\": "App/"
         }
     }
 }
