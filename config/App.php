@@ -3,24 +3,22 @@ require_once 'config/Template.php';
 require_once 'config/autoload.php';
 require_once 'config/Helpers.php';
 require_once 'config/Views.php';
+require_once 'config/Request.php';
 error_reporting(E_ALL ^ E_NOTICE);
 
 class App
 {
-    private $request = "";
     private $controller = "";
     private $method = "";
     private $args = "";
-    private $page = "";
 
     public function __construct()
     {
         $this->loadURL();
-        $this->loadRequest();
         $this->loadController();
         $this->loadActions();
 
-        // deb($this->request);
+        // deb($request);
         // deb($this->controller);
         // deb($this->method);
         // deb($this->args);
@@ -63,20 +61,6 @@ class App
         }
     }
 
-    public function loadRequest()
-    {
-        //cargamos el request
-        $request = file_get_contents("php://input");
-
-        if(isset($request)){
-            $request = $_POST;
-            $this->request = (object)$request;
-        }else{
-            $this->request = (object) json_decode($request, true);
-        }
-       
-    }
-
 
     public function loadController()
     {
@@ -93,7 +77,7 @@ class App
     {
         $controller = new $this->controller();
         $request_method = $_SERVER["REQUEST_METHOD"];
-
+        $request = new Request();
 
         switch ($request_method) {
             case 'GET':
@@ -116,14 +100,14 @@ class App
                 break;
             case 'POST':
                 ($this->method=="")?$this->method = "store" : null;
-
-                $controller->{$this->method}($this->request, $this->args);
+             
+                $controller->{$this->method}($request, $this->args);
                 # code...
                 break;
             case 'PUT':
                 $this->method = "update";
-                if(!isset($this->request)){
-                    $controller->{$this->method}($this->request);
+                if(!isset($request)){
+                    $controller->{$this->method}($request);
                 }else{
                     $controller->{$this->method}($this->method);
                 }
@@ -133,8 +117,8 @@ class App
                 $this->args = $this->method;
                 $this->method = "delete";
                
-                if(!isset($this->request)){
-                    $controller->{$this->method}($this->request);
+                if(!isset($request)){
+                    $controller->{$this->method}($request);
                 }else{
                     $controller->{$this->method}($this->args);
                 }
