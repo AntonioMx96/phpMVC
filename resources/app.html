@@ -7,22 +7,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/public/Styles/normalize.css">
   <link rel="stylesheet" href="/public/Styles/main.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/public/css/simple-sidebar.css" rel="stylesheet">
+    <script src="/resources/assets/splide-2.4.21/dist/css/splide.min.css"></script>
+  
   <title>
     <?= $title ?>
   </title>
 </head>
 
-<body class="hold-transition sidebar-mini">
 
-  <div class="container">
+<body class="hold-transition sidebar-mini">
+<h1>Hola xd</h1>
+  <div class="">
     <?= $child ?>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"
     integrity="sha512-G3jAqT2eM4MMkLMyQR5YBhvN5/Da3IG6kqgYqU9zlIH4+2a+GuMdLb5Kpxy6ItMdCfgaKlo2XFhI0dHtMJjoRw=="
-    crossorigin="anonymous"></script>
-    <script src="/public/js/Crud.js"></script>
-    <script src="/public/js/post.js"></script>
+    crossorigin="anonymous"></script> -->
+    <script src="/public/vendor/jquery/jquery.min.js"></script>
+    <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/resources/assets/splide-2.4.21/dist/js/splide.min.js"></script>
+
+      <script>
+        document.addEventListener( 'DOMContentLoaded', function () {
+          new Splide( '.splide' ).mount();
+        } );
+    </script>
 </body>
 
 </html>
